@@ -1,11 +1,13 @@
-## Justice Bot Backend Levelup
+## Rest API Levelup
 
 In this project, you are part of a team building a blog platform. One requirement is for a REST API service to provide posts information using the Nodejs Express framework. The requirements include authenticating, filtering and ordering requirements, response codes and error messages for the queries you must implement.
 
 The definitions and a detailed requirements list follow. You will be graded on whether your application performs data retrieval and manipulation based on given use cases exactly as described in the requirements.
 
 ### Features
+
 #### Required features
+
 -   Users should be able to sign up
 -   Users should be able to sign in
 -   Users should be able to add a new post
@@ -14,141 +16,185 @@ The definitions and a detailed requirements list follow. You will be graded on w
 -   Users should be able to delete a single post
 -   Users should be able to retrive all posts
 
-
 #### Optional features
+
 -   Order posts by title, description, created date, etc.
 -   Filter post by title, description, etc.
 
 ### Model
--   User
-  ```js
-    {
-      id: String|Required,
-      email: String|Required,
-      username: String|Required,
-      password: String|Required,
-      createdAt: Date|Required,
-      updatedAt: Date|Required,
-    }
-  ```
--   Post
-  ```js
-    {
-      id: String|Required,
-      poster: String|Required,
-      title: String|Required,
-      description: String|Required,
-      createdAt: Date|Required,
-      updatedAt: Date|Required,
-    }
-  ```
-### Responses
-#### Generic Responses
--   Success reposnse
-  ```js
-    {
-      status: Integer,
-      message: String,
-      data: Object|Array
-    }
-  ```
 
--   Error response
-  ```js
+-   User
+
+```js
   {
-    status: Integer,
-    error: String
-  }
-  ```
-#### Request Body User
--   POST /auth/signup
-  ```js
-  {
+    id: String|Required,
     email: String|Required,
     username: String|Required,
     password: String|Required,
+    createdAt: Date|Required,
+    updatedAt: Date|Required,
   }
-  ```
--   POST /auth/signin
-  ```js
+```
+
+-   Post
+
+```js
   {
-    username: String|Required,
-    password: String|Required,
+    id: String|Required,
+    poster: String|Required,
+    title: String|Required,
+    description: String|Required,
+    createdAt: Date|Required,
+    updatedAt: Date|Required,
   }
-  ```
-#### Success User response
+```
+
+### Responses
+
+#### Generic Responses
+
+-   Success reposnse
+
+```js
+  {
+    status: Integer,
+    message: String,
+    data: Object|Array
+  }
+```
+
+-   Error response
+
+```js
+{
+  status: Integer,
+  error: String
+}
+```
+
+#### Request Body User
+
 -   POST /auth/signup
-  ```js
-  {
-    status: 201,
-    data : {
-      id: String|Required,
-      email: String|Required,
-      username: String|Required,
-      token: String|Required,
-    }
-  }
-  ```
+
+```js
+{
+  email: String|Required,
+  username: String|Required,
+  password: String|Required,
+}
+```
+
 -   POST /auth/signin
-  ```js
-  {
-    status: 200,
-    data : {
-      id: String|Required,
-      username: String|Required,
-      token: String|Required,
-    }
+
+```js
+{
+  username: String|Required,
+  password: String|Required,
+}
+```
+
+#### Success User response
+
+-   POST /auth/signup
+
+```js
+{
+  status: 201,
+  data : {
+    id: String|Required,
+    email: String|Required,
+    username: String|Required,
+    token: String|Required,
   }
-  ```
+}
+```
+
+-   POST /auth/signin
+
+```js
+{
+  status: 200,
+  data : {
+    id: String|Required,
+    username: String|Required,
+    token: String|Required,
+  }
+}
+```
 
 #### Success Posts response
+
 -   POST /posts
-  ```js
-  {
-    status: 201,
-    data : {
-      id: String|Required,
-      poster: String|Required,
-      title: String|Required,
-      description: String|Required,
-      createdAt: Date|Required,
-      updatedAt: Date|Required,
-    }
+
+```js
+{
+  status: 201,
+  data : {
+    id: String|Required,
+    poster: String|Required,
+    title: String|Required,
+    description: String|Required,
+    createdAt: Date|Required,
+    updatedAt: Date|Required,
   }
-  ```
+}
+```
+
 -   UPDATE /posts/postId
-  ```js
-  {
-    status: 200,
-    data : {
-      id: String|Required,
-      poster: String|Required,
-      title: String|Required,
-      description: String|Required,
-      createdAt: Date|Required,
-      updatedAt: Date|Required,
-    }
+
+```js
+{
+  status: 200,
+  data : {
+    id: String|Required,
+    poster: String|Required,
+    title: String|Required,
+    description: String|Required,
+    createdAt: Date|Required,
+    updatedAt: Date|Required,
   }
-  ```
+}
+```
+
 -   DELETE /posts/postId
-  ```js
-  {
-    status: 200,
-    data : {
-      id: String|Required,
-      poster: String|Required,
-      title: String|Required,
-      description: String|Required,
-      createdAt: Date|Required,
-      updatedAt: Date|Required,
-    }
+
+```js
+{
+  status: 200,
+  data : {
+    id: String|Required,
+    poster: String|Required,
+    title: String|Required,
+    description: String|Required,
+    createdAt: Date|Required,
+    updatedAt: Date|Required,
   }
-  ```
+}
+```
+
 -   GET /posts/postId
-  ```js
-  {
-    status: 200,
-    data : {
+
+```js
+{
+  status: 200,
+  data : {
+    id: String|Required,
+    poster: String|Required,
+    title: String|Required,
+    description: String|Required,
+    createdAt: Date|Required,
+    updatedAt: Date|Required,
+  }
+}
+```
+
+-   GET /posts
+
+```js
+{
+  status: 200,
+  data : [
+    {
       id: String|Required,
       poster: String|Required,
       title: String|Required,
@@ -156,33 +202,19 @@ The definitions and a detailed requirements list follow. You will be graded on w
       createdAt: Date|Required,
       updatedAt: Date|Required,
     }
-  }
-  ```
--   GET /posts
-  ```js
-  {
-    status: 200,
-    data : [
-      {
-        id: String|Required,
-        poster: String|Required,
-        title: String|Required,
-        description: String|Required,
-        createdAt: Date|Required,
-        updatedAt: Date|Required,
-      }
-    ]
-  }
-  ```
+  ]
+}
+```
 
 ### Technologies
+
 -   Node/Express
 -   MySQL
 -   Sequelize
 -   Jest/Supertest
 
-
 ### Recommended packages
+
 -   [Hapi/Joi](https://hapi.dev/family/joi/): Joi is a validation library that can be used in express application to validate the body of the request.
 -   [Sequelize](https://sequelize.org/master/): Sequelize is a SQL object modeling tool designed to work in an asynchronous environment.
 -   [Babel-watch](https://www.npmjs.com/package/babel-watch): Reload your babel-node app on JS source file changes. And do it fast.
@@ -193,6 +225,7 @@ The definitions and a detailed requirements list follow. You will be graded on w
 -   [SuperTest](https://www.npmjs.com/package/supertest): Super Test is an API testing library.
 
 ### Acceptance criteria
+
 -   You should setup babel and use es6 features
 -   All the endpoints should work as expected
 -   Some endpoints should have request validation(Post & Update)
@@ -203,6 +236,9 @@ The definitions and a detailed requirements list follow. You will be graded on w
 -   All the endpoints should be tested
 
 ### Basic Project Structure
+
 [Project Structure](./src)
+
 ### Author
--   [Verdotte Aututu](https://github.com/verdotte)
+
+-   [Freweini Beyene](https://github.com/freta)
